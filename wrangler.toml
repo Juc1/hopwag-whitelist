@@ -1,0 +1,4 @@
+Your Worker name
+Which KV namespace to use
+Which routes to apply the Worker to
+Any scheduled triggers for the sync
