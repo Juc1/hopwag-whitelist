@@ -7,7 +7,7 @@ export default {
 
     // Skip non-HTML requests (images, CSS, JS etc.)
     const ext = ['.jpg','.jpeg','.png','.gif','.webp',
-                 '.css','.js','.woff','.woff2','.ico'];
+                 '.css','.js','.woff','.woff2','.ico','.svg','.mp3'];
     if (ext.some(e => path.endsWith(e))) {
       return fetch(request);
     }
