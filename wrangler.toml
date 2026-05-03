@@ -1,4 +1,32 @@
-Your Worker name
-Which KV namespace to use
-Which routes to apply the Worker to
-Any scheduled triggers for the sync
+# Your Worker name
+# Which KV namespace to use
+# Which routes to apply the Worker to
+# Any scheduled triggers for the sync
+
+name = "whitelist-worker"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+# Your account ID from Cloudflare dashboard
+account_id = "your_account_id_here"
+
+# Routes - which domains the Worker intercepts
+routes = [
+  { pattern = "yourdomain.com/*", zone_name = "yourdomain.com" },
+  { pattern = "www.yourdomain.com/*", zone_name = "yourdomain.com" }
+]
+
+# KV namespace binding
+[[kv_namespaces]]
+binding = "WHITELIST"
+id = "hopwag-whitelist"
+preview_id = "your_test_kv_namespace_id_here"
+
+# Scheduled sync - fetch from Drupal and update KV
+[triggers]
+crons = ["0 * * * *"]  # every hour
+
+# Environment variables
+[vars]
+DRUPAL_VIEW_URL = "https://phpstack-1589272-6334126.cloudwaysapps.com/api/whitelist-paths"
+DRUPAL_VIEW_URL_PROD = "https://yourdomain.com/api/whitelist-paths"
